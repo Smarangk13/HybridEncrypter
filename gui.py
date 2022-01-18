@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from AlgorithmProject.encoding import *
+from encoding import *
 
 
 class App(QMainWindow):
@@ -30,12 +30,12 @@ class App(QMainWindow):
 
     messageBoxX = leftAlign
     messageBoxY = textLabelY + bufferY
-    messageBoxWidth = width - leftAlign *2
+    messageBoxWidth = width - leftAlign * 2
     messageBoxHeight = passwordBoxHeight * 5
 
     buttonX = leftAlign
     buttonY = messageBoxY + messageBoxHeight + bufferY
-    buttonWidth = int(width/3) - bufferX *2
+    buttonWidth = int(width / 3) - bufferX * 2
     buttonHeight = 40
     buttonX2 = buttonX + buttonWidth + bufferX
     buttonX3 = buttonX2 + buttonWidth + bufferX
@@ -53,7 +53,7 @@ class App(QMainWindow):
         super().__init__()
         self.title = 'Password Ciphers'
         self.encrypt = True
-        self.encyrpter = encrypting()
+        self.encyrpter = Encrypting()
         self.initUI()
 
     def initUI(self):
@@ -62,12 +62,12 @@ class App(QMainWindow):
 
         # Create Password text Line
         self.PasswordText = QLabel(self)
-        self.PasswordText.move(self.passwordLabelX,self.passwordLabelY)
+        self.PasswordText.move(self.passwordLabelX, self.passwordLabelY)
         self.PasswordText.setText("Password")
 
         # Create textbox for Password
         self.passwordBox = QLineEdit(self)
-        self.passwordBox.move(self.passwordBoxX,self.passwordBoxY)
+        self.passwordBox.move(self.passwordBoxX, self.passwordBoxY)
         self.passwordBox.resize(self.passwordBoxWidth, self.passwordBoxHeight)
 
         # Create Message text line
@@ -78,12 +78,12 @@ class App(QMainWindow):
         # Create textbox for message
         self.textboxIn = QPlainTextEdit(self)
         self.textboxIn.move(self.messageBoxX, self.messageBoxY)
-        self.textboxIn.resize(self.messageBoxWidth,self.messageBoxHeight)
+        self.textboxIn.resize(self.messageBoxWidth, self.messageBoxHeight)
 
         # Create a button in the window
         self.button1 = QPushButton('Caesar', self)
         self.button1.move(self.buttonX, self.buttonY2)
-        self.button1.resize(self.buttonWidth,self.buttonHeight)
+        self.button1.resize(self.buttonWidth, self.buttonHeight)
 
         self.button2 = QPushButton('Password', self)
         self.button2.move(self.buttonX2, self.buttonY2)
@@ -96,9 +96,8 @@ class App(QMainWindow):
         # Create toggle button
         self.buttonE = QPushButton('Encrypt Mode - Click to change', self)
         self.buttonE.move(self.buttonX, self.buttonY)
-        self.buttonE.resize(self.buttonWidth * 3 + 2* self.bufferX, self.buttonHeight)
+        self.buttonE.resize(self.buttonWidth * 3 + 2 * self.bufferX, self.buttonHeight)
         self.buttonE.setStyleSheet("background-color: red")
-
 
         # connect button to function on_click
         self.button1.clicked.connect(self.caesarClicked)
@@ -138,7 +137,6 @@ class App(QMainWindow):
             result = self.encyrpter.caesarDecrypt(textboxValue, pw)
         self.resultBox.setPlainText(result)
 
-
     def passwordClicked(self):
         textboxValue = self.textboxIn.toPlainText()
         pw = self.passwordBox.text()
@@ -165,6 +163,7 @@ class App(QMainWindow):
         else:
             self.buttonE.setText("Decrypt Mode  - Click to change")
             self.buttonE.setStyleSheet("background-color: green")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

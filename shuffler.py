@@ -2,7 +2,7 @@ import random
 import math
 
 
-class shuffle:
+class Shuffle:
 
     # Function to return number as string with leading 0s
     def neededDigits(self, num, d):
@@ -36,7 +36,7 @@ class shuffle:
 
         return arr
 
-    def slide(self, d, s, wordsize = 2):
+    def slide(self, d, s, wordsize=2):
         deck = {}
         l = len(d)
         s %= l
@@ -46,9 +46,10 @@ class shuffle:
 
         return deck
 
+
 if __name__ == "__main__":
     print("hey")
-    deck = shuffle()
+    deck = Shuffle()
     nums = [1, 2, 3, 4, 5, 6, 7, 8, 11, 22, 33, 44, 55, 66, 77, 88, 99]
     print(nums)
     # cards1 = deck.arrShuffle(nums)

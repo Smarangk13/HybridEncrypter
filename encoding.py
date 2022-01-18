@@ -1,8 +1,10 @@
-from shuffler import shuffle
+from shuffler import Shuffle
+
+
 # from AlgorithmProject import shuffler
 
 
-class encoding:
+class Encoding:
     cipher = {}
     charSize = 2
 
@@ -42,11 +44,13 @@ class encoding:
                     r += x
         return r
 
-class encrypting:
+
+class Encrypting:
     key = "29100107563126386110270218232633044045320933080956364007560849105921553322275604"
+
     # Message -> encode (to numbers) -> encrypt (to scrambled string)
     def demo(self, message, cipher, newCipher):
-        trans = encoding()
+        trans = Encoding()
         encodedMessage = trans.encode(message, cipher)
         print("Default encoded Message = ", encodedMessage)
 
@@ -63,13 +67,13 @@ class encrypting:
         message = input("Enter your message")
         pw = input("Password: ")
 
-        return message,pw
+        return message, pw
 
     def passwordDemo(self, message, pw):
         # Need a sample key because most user keys will be too short
         key = self.key
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
         print(trans.cipher)
         pwe = trans.encode(pw, trans.cipher)
         secretKey = pwe + key
@@ -80,8 +84,8 @@ class encrypting:
         self.demo(message, trans.cipher, newCipher)
 
     def caesarDemo(self, message, pw):
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
         print(trans.cipher)
 
         pw = int(pw)
@@ -94,8 +98,8 @@ class encrypting:
     def hybridDemo(self, message, pw):
         key = self.key
 
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
         print(trans.cipher)
 
         pwi = int(pw) % len(trans.cipher)
@@ -109,8 +113,8 @@ class encrypting:
 
     def passwordEncrypt(self, message, pw):
         key = self.key
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
 
         pwe = trans.encode(pw, trans.cipher)
         secretKey = pwe + key
@@ -123,8 +127,8 @@ class encrypting:
 
     def passwordDecrypt(self, message, pw):
         key = self.key
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
 
         pwe = trans.encode(pw, trans.cipher)
         secretKey = pwe + key
@@ -136,8 +140,8 @@ class encrypting:
         return decryptedMessage
 
     def caesarEncrypt(self, message, pw):
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
 
         pw = int(pw)
 
@@ -149,8 +153,8 @@ class encrypting:
         return encryptedMessage
 
     def caesarDecrypt(self, message, pw):
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
 
         pw = int(pw)
 
@@ -164,8 +168,8 @@ class encrypting:
     def hybridEncrypt(self, message, pw):
         key = self.key
 
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
 
         pwe = trans.encode(pw, trans.cipher)
         pwi = int(pwe)
@@ -181,8 +185,8 @@ class encrypting:
     def hybridDecrypt(self, message, pw):
         key = self.key
 
-        trans = encoding()
-        deck = shuffle()
+        trans = Encoding()
+        deck = Shuffle()
 
         pwe = trans.encode(pw, trans.cipher)
         pwi = int(pwe) % len(trans.cipher)
@@ -196,9 +200,10 @@ class encrypting:
 
         return decryptedMessage
 
+
 if __name__ == "__main__":
-    encrypt = encrypting()
-    while(1):
+    encrypt = Encrypting()
+    while True:
         print("1. Caesar Chipher \n 2. Password Cipher \n 3. Hybrid Cipher")
         choice = input()
         if choice == '1':
@@ -207,7 +212,7 @@ if __name__ == "__main__":
 
         elif choice == '2':
             msg, pw = encrypt.askCredentials()
-            encrypt.passwordDemo(msg,pw)
+            encrypt.passwordDemo(msg, pw)
 
         elif choice == '3':
             msg, pw = encrypt.askCredentials()
